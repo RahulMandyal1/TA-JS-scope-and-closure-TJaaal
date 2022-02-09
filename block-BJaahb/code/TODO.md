@@ -9,7 +9,7 @@ function outer() {
   }
   return inner;
 }
-let getSum = outer();
+let getSum = outer();    
 let num = getSum();
 ```
 
@@ -28,10 +28,10 @@ function getCounter() {
 
 let counter = getCounter();
 
-counter(); // output
-counter(); // output
-counter(); // output
-counter(); // output
+counter(); // 0
+counter(); // 1
+counter(); // 2
+counter(); // 3
 ```
 
 3. Create the execution context diagram
@@ -39,7 +39,7 @@ counter(); // output
 ```js
 function makeColorChanger(color) {
   return function () {
-    document.body.style.backgroundColor = color;
+    return  document.body.style.backgroundColor = color;
   };
 }
 
@@ -50,4 +50,5 @@ blue();
 tomato();
 
 // What will be the background color after the execution of last line
+the background color  after  the execution of  the last   line will be 'tomato'
 ```
