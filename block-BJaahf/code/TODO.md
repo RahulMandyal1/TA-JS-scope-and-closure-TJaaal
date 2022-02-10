@@ -10,9 +10,9 @@
 **You can use normal for loop for this function**
 
 ```js
-function loop(n) {
-  return function (){
-
+function loop(start,test,update,body) {
+  for(let i = start; test(i); update(i)){
+    body(i);
   }
 }
 
