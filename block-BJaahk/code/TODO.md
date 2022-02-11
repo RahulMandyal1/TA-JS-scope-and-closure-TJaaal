@@ -6,7 +6,12 @@ The returned function accepts a sentence. If the sentence contains the `fromWord
 
 ```js
 function censor(fromWord, toWord) {
-  //  Your code goes here
+  return function(str){
+    if(str.includes(fromWord)){
+      str =str.replace(fromWord, toWord);
+      return str;
+    }
+  }
 }
 
 let censorSentence = censor('World', 'Sam');
@@ -25,7 +30,24 @@ The returned function either accepts two parameter or one parameter.
 
 ```js
 function multipleCensor() {
-  //  Your code goes here
+  let replaceWord = [];
+  return function (firstWord,secondWord){
+    let finalStr;
+    if(argument.length>1){
+      replaceWord.push(firstWord,secondWord);
+    }
+    if(arguments.length<2){
+       return replaceWord.reduce((acc,cv,index)=>{
+          if(acc.includes(cv)){
+              index+=1;
+              console.log(replaceWord[index]);
+              finalStr= acc.replace(cv,String(replaceWord[index]));
+              return acc;
+          }
+        return finalStr;
+    },firstWord)
+    }
+  }
 }
 
 let censorQuote = multipleCensor();
@@ -49,8 +71,17 @@ The returned function accepts one parameter.
 - If the parameter is the same as the password it will return the object in which we stored the values.
 
 ```js
-function createCache() {
+function createCache(callBack,password) {
   // Your code goes here
+  let obj = {};
+  return function(value){
+    if(value===password){
+      return obj;
+    }
+    else{
+      obj[value] = callBack(value);
+    }
+  }
 }
 
 function add10(num) {
@@ -69,8 +100,22 @@ addCache('foo'); // {12: 22, 100: 110, 1: 11}
 4. Change the above function in such a way that when the returned function is called with any other value than password. It should first check the object where we are storing the argument and return value. If the key is present return the value form the object itself. Otherwise call the callback function with the parameter.
 
 ```js
-function createCache() {
+function createCache(callBack,password) {
   // Your code goes here
+  let obj = {};
+  return function(value){
+    if(value===password){
+      return obj;
+    }
+    else{
+       if(value===obj.value){
+         console.log('callback should not be called');
+       }
+       else{
+          obj[value] = callBack(value);
+       }
+    }
+  }
 }
 
 function add10(num) {
