@@ -68,12 +68,11 @@ The final output from the third array will be matched agains the same indexed el
 
 ```js
 function objOfMatchesWithArray(array1, array2, callback) {
-   return array2.reduce((acc,value,index)=>{
-     callback.map(fun=>{
-          if(value===fun(array1[index])){
-             acc[array1[index]] = value;
-          }
-     })
+  return array1.reduce((acc,value,index)=>{
+    let val = callback.reduce((acc,fn)=>fn(acc),value);
+    if(val=== array[index]){
+      acc[value]  = val;
+    }
     return acc;
   },{})
 }
